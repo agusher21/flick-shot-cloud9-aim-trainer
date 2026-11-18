@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flick Shot — Cloud9 Aim Trainer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <!-- Animated sky background (pure CSS, original art) -->
+  <div class="sky" aria-hidden="true">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="cloud c4"></div>
+    <div class="cloud c5"></div>
+    <div class="sun"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">☁️</span>
+      <span class="brand-name">FLICK SHOT</span>
+      <span class="brand-sub">Cloud9 Aim Trainer</span>
+    </div>
+    <button id="btn-sound" class="icon-btn" type="button" title="Toggle sound">🔊</button>
+  </header>
+
+  <!-- ============ START SCREEN ============ -->
+  <section id="screen-start" class="screen active">
+    <div class="panel start-panel">
+      <h1 class="game-title">FLICK SHOT</h1>
+      <p class="tagline">Cloud9 Aim Trainer — how fast are your flicks?</p>
+      <p class="howto">Klik target secepat mungkin — 60 detik. Target kecil = poin lebih besar. Target emas = poin 3x. Jangan sampai miss, combo kamu reset!</p>
+
+      <label class="name-label" for="player-name">Your name (local leaderboard)</label>
+      <input id="player-name" type="text" maxlength="16" placeholder="Player" autocomplete="off" spellcheck="false">
+
+      <button id="btn-play" class="btn btn-big" type="button">▶&nbsp; PLAY</button>
+
+      <div class="board-wrap">
+        <h2 class="board-title">🏆 Local Legends — Top 10</h2>
+        <ol id="board-start" class="board"></ol>
+        <p id="board-start-empty" class="board-empty">No scores yet — be the first legend!</p>
+      </div>
+
+      <p class="foot-note">60 seconds &nbsp;•&nbsp; Mouse only &nbsp;•&nbsp; No tutorial needed &nbsp;•&nbsp; Works offline</p>
+    </div>
+  </section>
+
+  <!-- ============ GAME SCREEN ============ -->
+  <section id="screen-game" class="screen">
+    <div class="hud">
+      <div class="hud-item hud-time"><span class="hud-label">TIME</span><span id="hud-time" class="hud-value">60.0</span></div>
+      <div class="hud-item hud-score"><span class="hud-label">SCORE</span><span id="hud-score" class="hud-value">0</span></div>
+      <div class="hud-item hud-combo"><span class="hud-label">COMBO</span><span id="hud-combo" class="hud-value">x1.0</span></div>
+      <div class="hud-item hud-hits"><span class="hud-label">HITS / MISS</span><span class="hud-value"><span id="hud-hits">0</span> / <span id="hud-misses">0</span></span></div>
+    </div>
+    <div id="field" class="field">
+      <div id="countdown" class="countdown" hidden></div>
+    </div>
+  </section>
+
+  <!-- ============ END SCREEN ============ -->
+  <section id="screen-end" class="screen">
+    <div class="panel end-panel">
+      <p class="rank-label">YOUR RANK</p>
+      <h1 id="end-rank" class="rank-title">Rookie</h1>
+      <p class="end-score-line">Final Score <span id="end-score">0</span></p>
+
+      <div class="stats-grid">
+        <div class="stat"><span class="stat-value" id="end-hits">0</span><span class="stat-label">Hits</span></div>
+        <div class="stat"><span class="stat-value" id="end-misses">0</span><span class="stat-label">Misses</span></div>
+        <div class="stat"><span class="stat-value" id="end-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
+        <div class="stat"><span class="stat-value" id="end-reaction">—</span><span class="stat-label">Avg Reaction</span></div>
+        <div class="stat"><span class="stat-value" id="end-best-combo">0</span><span class="stat-label">Best Combo</span></div>
+        <div class="stat"><span class="stat-value" id="end-best-score">0</span><span class="stat-label">Best Score</span></div>
+      </div>
+
+      <div class="board-wrap">
+        <h2 class="board-title">🏆 Local Legends — Top 10</h2>
+        <ol id="board-end" class="board"></ol>
+        <p id="board-end-empty" class="board-empty">No scores yet — be the first legend!</p>
+      </div>
+
+      <button id="btn-again" class="btn btn-big" type="button">↻&nbsp; PLAY AGAIN</button>
+      <p class="foot-note">Next player: enter a new name on the start screen.</p>
+    </div>
+  </section>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
