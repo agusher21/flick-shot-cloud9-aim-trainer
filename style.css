@@ -89,6 +89,34 @@ body {
   to   { left: 110%; }
 }
 
+/* ---------- Birds crossing the sky (random, JS-spawned) ---------- */
+#birds { position: absolute; inset: 0; overflow: hidden; }
+.bird {
+  position: absolute;
+  top: var(--top, 15%);
+  left: 0;
+  width: calc(38px * var(--scale, 1));
+  height: calc(20px * var(--scale, 1));
+  opacity: 0.7;
+  animation: fly var(--dur, 12s) linear forwards;
+}
+.bird svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.bird.rtl svg { transform: scaleX(-1); }  /* flies right-to-left, facing left */
+.bird .wing {
+  transform-box: fill-box;
+  animation: flap 0.55s ease-in-out infinite alternate;
+}
+.bird .wing.left  { transform-origin: 100% 100%; }
+.bird .wing.right { transform-origin: 0% 100%; animation-delay: -0.27s; }
+@keyframes flap { from { transform: rotate(16deg); } to { transform: rotate(-20deg); } }
+@keyframes fly {
+  0%   { transform: translate(-60px, 0); }
+  25%  { transform: translate(25vw, -14px); }
+  50%  { transform: translate(50vw, 6px); }
+  75%  { transform: translate(75vw, -10px); }
+  100% { transform: translate(110vw, 0); }
+}
+
 /* ---------- Top bar ---------- */
 .topbar {
   position: relative;

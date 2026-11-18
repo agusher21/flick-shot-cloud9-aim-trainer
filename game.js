@@ -281,6 +281,30 @@ function shakeScreen() {
   app.classList.add('shake');
 }
 
+/* ---------------- Background birds (random fly-bys) ---------------- */
+var birdsLayer = $('birds');
+function spawnBird() {
+  if (!birdsLayer) return;
+  var b = document.createElement('div');
+  /* 35% fly right-to-left, the rest left-to-right — random every time */
+  b.className = 'bird' + (Math.random() < 0.35 ? ' rtl' : '');
+  b.style.setProperty('--top', randInt(4, 55) + '%');      // random height
+  b.style.setProperty('--dur', rand(9, 18).toFixed(1) + 's'); // random speed
+  b.style.setProperty('--scale', rand(0.7, 1.4).toFixed(2));  // random size
+  b.innerHTML = '<svg viewBox="0 0 40 20" aria-hidden="true">' +
+    '<path class="wing left" d="M20 11 Q12 2 3 9" fill="none" stroke="#0a2540" stroke-width="2.6" stroke-linecap="round"/>' +
+    '<path class="wing right" d="M20 11 Q28 2 37 9" fill="none" stroke="#0a2540" stroke-width="2.6" stroke-linecap="round"/>' +
+    '</svg>';
+  birdsLayer.appendChild(b);
+  /* Self-cleaning: longest flight is 18s, 20s is safely past the edge */
+  setTimeout(function () { b.remove(); }, 20000);
+}
+function scheduleBird() {
+  spawnBird();
+  /* Next bird after a random 2.5–9s gap, forever — all screens */
+  setTimeout(scheduleBird, randInt(2500, 9000));
+}
+
 /* ---------------- Targets ---------------- */
 function spawnTarget(session) {
   if (!state.running || session !== state.session) return;
@@ -504,3 +528,4 @@ window.addEventListener('resize', function () { /* no-op by design */ });
 /* ---------------- Init ---------------- */
 renderBoard(boardStart, boardStartEmpty, null);
 updateHUD();
+setTimeout(scheduleBird, 1200);  /* first bird ~1.2s after load, then random */
