@@ -390,8 +390,11 @@ body {
   text-shadow: 0 6px 24px rgba(4, 30, 80, 0.55);
   pointer-events: none;
   z-index: 10;
-  animation: count-zoom 0.9s ease-out;
+  animation: count-zoom 0.9s ease-out forwards;
 }
+/* display:flex above beats the browser's [hidden]{display:none} — without
+   this rule the GO! text could never actually disappear. */
+.countdown[hidden] { display: none; }
 @keyframes count-zoom {
   0% { transform: scale(1.8); opacity: 0; }
   25% { transform: scale(1); opacity: 1; }

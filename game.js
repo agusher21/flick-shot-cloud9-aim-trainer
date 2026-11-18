@@ -444,9 +444,10 @@ function startGame() {
       countdownEl.style.animation = '';
       sfxCount(label === 'GO!');
       if (label === 'GO!') {
+        /* GO! lingers a couple of seconds, then disappears for good */
         setTimeout(function () {
           if (session === state.session) countdownEl.hidden = true;
-        }, 700);
+        }, 2000);
       }
     }, i * 750);
   });
