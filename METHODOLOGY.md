@@ -22,3 +22,12 @@ The brief asks for a fast, engaging, intuitive mini game for a Cloud9 booth, wit
 - A full round spawns roughly 110–150 targets; a strong player lands 50–70 hits.
 - Rank thresholds were set from playtesting: Rookie (<1,500), Sharp (1,500), Deadeye (3,000), Flick Master (5,000), Cloud9 Legend (8,000+).
 - Particles self-remove after their animation and expired targets are removed on a timer, so memory stays flat across many consecutive rounds.
+
+## Tools
+
+The game was built as plain HTML + CSS + vanilla JavaScript with no build step
+and no dependencies. The project was opened and reviewed in **IntelliJ IDEA
+Community Edition 2025.2.6.4**, the free JetBrains IDE; the IDE-generated
+`.idea/` project folder is committed in this repository as evidence (see
+`TOOLING.md` for the full, corrected tooling record). Code was written and
+tested with Muse + Codex, and the IDE was used for editing and review.
